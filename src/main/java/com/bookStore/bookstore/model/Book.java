@@ -3,6 +3,11 @@ package com.bookStore.bookstore.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * this is a Book entity class
+ * @author ashishyadav03
+ *
+ */
 @Entity
 public class Book {
 	
@@ -14,7 +19,14 @@ public class Book {
 	private long quantity;
 	
 	
-	
+	/**
+	 * this is a Book Constructor
+	 * @param isbn
+	 * @param title
+	 * @param author
+	 * @param price
+	 * @param quantity
+	 */
 	public Book(String isbn, String title, String author, long price, long quantity) {
 		super();
 		this.isbn = isbn;
@@ -24,7 +36,9 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-
+	/**
+	 * this is a Book Constructor
+	 */
 	public Book() {
 		super();
 	}
