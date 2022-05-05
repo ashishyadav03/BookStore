@@ -38,6 +38,8 @@ public class BookController {
 	@GetMapping("/book")
 	public ResponseEntity<List<Book>> getProduct(){
 		
+		logger.info("info");
+		logger.trace("trace");
 		logger.error("fatal error");
 
 		List<Book> list = bookService.getBook();
@@ -55,7 +57,8 @@ public class BookController {
 	 */
 	@GetMapping("/book/{isbn}")
 	public Optional<Book> getProductById(@PathVariable String isbn){
-		
+		logger.info("info");
+		logger.trace("trace");
 		return bookService.getBookBYId(isbn);
 	}
 	
@@ -66,6 +69,8 @@ public class BookController {
 	 */
 	@PostMapping("/book")
 	public Book addBook(@RequestBody Book book){
+		logger.info("info");
+		logger.trace("trace");
 		return bookService.addBook(book);
 	}
 	
@@ -76,6 +81,8 @@ public class BookController {
 	 */
 	@GetMapping("/books/{keyword}")
 	public List<Book> getBookByIsbnORTitleOrAuthor(@PathVariable String keyword) {
+		logger.info("info");
+		logger.trace("trace");
 		return bookService.getBookByIsbnORTitleOrAuthor(keyword);
 	}
 	
@@ -87,13 +94,16 @@ public class BookController {
 	 */
 	@GetMapping("/book/{author}/{title}")
 	public List<Book> getBookByTitleAndAuthor(@PathVariable String author, @PathVariable String title) {
+		logger.info("info");
+		logger.trace("trace");
 		return bookService.getBookByTitleAndAuthor(author, title);
 	}
 	
 	
 	@PutMapping("/book")
 	public Book updateBookById(@RequestBody Book book){
-		
+		logger.info("info");
+		logger.trace("trace");
 		return bookService.updateBook(book);
 	}
 
