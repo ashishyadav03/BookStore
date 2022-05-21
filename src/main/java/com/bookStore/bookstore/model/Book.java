@@ -3,6 +3,8 @@ package com.bookStore.bookstore.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Required;
+
 /**
  * this is a Book entity class
  * @author ashishyadav03
@@ -58,6 +60,10 @@ public class Book {
 		return title;
 	}
 
+	@Required
+	public long getQuantity() {
+		return quantity;
+	}
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -83,10 +89,7 @@ public class Book {
 		this.price = price;
 	}
 	
-	public long getQuantity() {
-		return quantity;
-	}
-	
+	@Required
 	public void setQuantity(long quantity) {
 		this.quantity = quantity;
 	}

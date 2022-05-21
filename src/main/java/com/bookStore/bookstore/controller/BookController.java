@@ -1,5 +1,6 @@
 package com.bookStore.bookstore.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookStore.bookstore.model.Book;
+import com.bookStore.bookstore.model.Media;
 import com.bookStore.bookstore.services.BookService;
 
 /**
@@ -40,7 +42,7 @@ public class BookController {
 		
 		logger.info("info");
 		logger.trace("trace");
-		logger.error("fatal error");
+		logger.error("error");
 
 		List<Book> list = bookService.getBook();
 		if(list.size()<=0)
@@ -71,9 +73,17 @@ public class BookController {
 	public Book addBook(@RequestBody Book book){
 		logger.info("info");
 		logger.trace("trace");
+		Optional<Book> b = bookService.getBookBYId(book.getIsbn());
+//		if(b!=null) {
+//			return bookService.updatebook(book.getIsbn(), book.getQuantity());
+//		}
 		return bookService.addBook(book);
 	}
 	
+	public Book updateBookQuantity(@PathVariable String isbn, @PathVariable Long quantity) {
+		return bookService.updateBookQuantity(isbn, quantity);
+	}
+		
 	/**
 	 * we can search a book by using isbn/title/author 
 	 * @param keyword is a text for searching books
@@ -99,7 +109,11 @@ public class BookController {
 		return bookService.getBookByTitleAndAuthor(author, title);
 	}
 	
-	
+	/**
+	 * By this method we can update the Book details
+	 * @param book updated book details
+	 * @return the modified book details
+	 */
 	@PutMapping("/book")
 	public Book updateBookById(@RequestBody Book book){
 		logger.info("info");
@@ -107,4 +121,48 @@ public class BookController {
 		return bookService.updateBook(book);
 	}
 
+	/**
+	 * we can buy a book by this method
+	 * @param isbn book isbn number
+	 * @return return the book detail of bought book
+	 */
+	public Book ByABook(@PathVariable String isbn) {
+		return bookService.ByABook(isbn);
+	}
+	
+	/**
+	 * we can buy books by this method
+	 * @param isbn book isbn number
+	 * @param quantity number of books
+	 * @return the book detail of bought book
+	 */
+	public Book BuyBookByQuantity(@PathVariable String isbn, @PathVariable Long quantity) {
+		return bookService.BuyBookByQuantity(isbn, quantity);
+	}
+	
+	@GetMapping("/mediacoverage/{bookTitle}")
+	public ResponseEntity<?> getMedia(@PathVariable String bookTitle) {
+	ArrayList<Media> arr = new ArrayList<Media>();
+	logger.info("media coverage info");
+	// service call
+	Media[] medias = bookService.mediaList();
+	arr.clear();
+	int count = 0;	
+	for (int i = 0; i < medias.length; i++) {
+	String title = medias[i].getTitle();
+	String body = medias[i].getBody();
+	if (title.contains(bookTitle) || body.contains(bookTitle)) {
+	System.out.println("Present");
+	arr.add(medias[i]);
+	System.out.println(arr);
+	count++;
+	}
+	}
+	if (count == 0) {
+	logger.error("Data Not Present Or Invalid Input");
+	return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Data Not Found.");
+	}
+	logger.info("Data Found");
+	return ResponseEntity.ok(arr);
+	}
 }

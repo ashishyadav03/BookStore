@@ -1,0 +1,6 @@
+2022-05-21 17:37:34 [restartedMain] INFO  c.b.bookstore.BookstoreApplication - Starting BookstoreApplication using Java 16.0.2 on ashishyadav03 with PID 15624 (C:\Users\ashishyadav03\Downloads\bookstore\target\classes started by ashishyadav03 in C:\Users\ashishyadav03\Downloads\bookstore)
+2022-05-21 17:37:34 [restartedMain] DEBUG c.b.bookstore.BookstoreApplication - Running with Spring Boot v2.6.7, Spring v5.3.19
+2022-05-21 17:37:34 [restartedMain] INFO  c.b.bookstore.BookstoreApplication - No active profile set, falling back to 1 default profile: "default"
+2022-05-21 17:37:42 [restartedMain] INFO  c.b.bookstore.BookstoreApplication - Starting BookstoreApplication using Java 16.0.2 on ashishyadav03 with PID 15624 (C:\Users\ashishyadav03\Downloads\bookstore\target\classes started by ashishyadav03 in C:\Users\ashishyadav03\Downloads\bookstore)
+2022-05-21 17:37:42 [restartedMain] DEBUG c.b.bookstore.BookstoreApplication - Running with Spring Boot v2.6.7, Spring v5.3.19
+2022-05-21 17:37:42 [restartedMain] INFO  c.b.bookstore.BookstoreApplication - No active profile set, falling back to 1 default profile: "default"

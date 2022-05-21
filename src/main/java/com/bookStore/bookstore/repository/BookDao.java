@@ -33,4 +33,33 @@ public interface BookDao extends JpaRepository<Book, String> {
 	@Query("select b From Book b WHERE b.author =:atr and b.title =:tle")
 	public List<Book> getBookByAuthorAndTitle(@Param("atr") String author, @Param("tle") String title);
 	
+	/**
+	 * If a book already exists in the database then by this method we can update the quantity of the book
+	 * @param isbn book isbn number
+	 * @param quantity book quantity
+	 * @return return the book details
+	 */
+	@Query("update Book b set b.quantity = qt + qty = select qty.quantity from Book qty where qty.isbn=:id")
+	public Book updateBookById(@Param("id") String isbn, @Param("qt") long quantity);
+
+	/**
+	 * By this method we can buy a book
+	 * @param isbn is the book isbn number
+	 * @return the book of specified isbn number
+	 */
+	@Query("update Book b set b.quantity = b.quantity - 1 where b.isbn=:id")
+	Book ByBook(@Param("id") String isbn);
+
+	@Query("update Book b set b.quantity = b.quantity + qty where b.isbn=:id")
+	Book updateBookQuantity(String isbn, Long quantity);
+
+	/**
+	 * By this method we can buy a book
+	 * @param isbn is the book isbn number
+	 * @param quantity of book
+	 * @return the book of specified isbn number
+	 */
+	@Query("update Book b set b.quantity = b.quantity - qty where b.isbn=:id")
+	Book BuyBookByQuantity(@Param("id") String isbn, @Param("qty") Long quantity);
+	
 }

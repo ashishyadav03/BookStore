@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookStore.bookstore.model.Book;
+import com.bookStore.bookstore.model.Media;
 import com.bookStore.bookstore.repository.BookDao;
+
+import io.restassured.RestAssured;
 
 /**
  * this is a BookServiceImpl class
@@ -62,6 +65,25 @@ public class BookServiceImpl implements BookService {
 		return bookDao.save(book);
 	}
 
+	public Book updatebook(String isbn, long quantity) {
+		return bookDao.updateBookById(isbn, quantity);
+	}
 
+	public Book ByABook(String isbn) {
+		return bookDao.ByBook(isbn);
+	}
+
+	public Media[] mediaList() {
+		Media[] medias = RestAssured.get("https://jsonplaceholder.typicode.com/posts").as(Media[].class);
+		return medias;
+	}
+
+	public Book updateBookQuantity(String isbn, Long quantity) {
+		return bookDao.updateBookQuantity(isbn, quantity);
+	}
+
+	public Book BuyBookByQuantity(String isbn, Long quantity) {
+		return bookDao.BuyBookByQuantity(isbn, quantity);
+	}
 
 }
